@@ -19,4 +19,4 @@ class Post():
         self.member_id = member_id
 
     def __str__(self):
-return f"Title: {self.title}, Content: {self.content}"
+        return f"Title: {self.title}, Content: {self.content}"
