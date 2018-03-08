@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/style.css">
-    <title>Add Topic</title>
+    <title>{{ post.title}}</title>
 </head>
 <body>
     <h1>One Million Arab Coders Forums</h1>
@@ -15,15 +16,17 @@
 </ul>
 <br>
 <div>
-     <form action="{{ url_for('add_topic') }}" method="post">
-        <input type="text" name="title" />
+    <form action="{{ url_for("edit_topic", id = post.id) }}" method="post">
+        <label for="title"><b>Title: </b></label>
         <br>
-        <textarea rows="15" cols="50" name="content">{{ post.content}}</textarea>
+        <input type="text" name="title" value="{{ post.title}}" />
         <br>
-        <input type="submit" value="Add" />
-
+        <label for="title"><b>Content: </b></label>
+        <br>
+        <textarea rows="10" name="content">{{ post.content}}</textarea>
+        <br>
+        <input type="submit" value="Edit" />
     </form>
 </div>
-   
 </body>
 </html>
