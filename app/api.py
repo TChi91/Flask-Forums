@@ -38,8 +38,6 @@ def delete_api(id):
     try:
         post_store.delete(id)
         result = jsonify(post.__dict__())
-    except AttributeError:
-        result = abort(404, f"Topic with id: {id} doesn't exist")
     except ValueError:
         result = abort(404, f"Topic with id: {id} doesn't exist")
     return result

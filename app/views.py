@@ -13,7 +13,7 @@ def home():
 def show_topic(id):
     post = post_store.get_by_id(id)
     if post is None:
-        abort(404, f"topic with id: {id} doesn't exist.")
+        abort(404, f"Topic with id: {id} doesn't exist.")
     return render_template("show.html", post = post)
 
 
@@ -32,7 +32,7 @@ def delete_topic(id):
     try:
         post_store.delete(id)
     except ValueError:
-        abort(404, f"topic with id: {id} doesn't exist.")
+        abort(404, f"Topic with id: {id} doesn't exist.")
     return redirect(url_for('home'))
 
 
