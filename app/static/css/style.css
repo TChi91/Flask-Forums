@@ -55,3 +55,15 @@ div{
     /*margin-left: 450px;*/
     text-align: center
 }
+
+p{
+    text-align:center;
+    color: red;
+    padding: 10px;
+    font-size: 24px;
+}
+
+img{
+    margin: auto 42%;
+    text-align:center;
+}
