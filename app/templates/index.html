@@ -37,7 +37,7 @@
             <a href="{{ url_for("edit_topic", id = post.id) }}">Edit</a>
         </td>
         <td>
-            <a href="{{ url_for("delete_topic", id = post.id) }}">Delete</a>
+            <a class="del" id="{{post.id}}" href="#" >Delete</a>
         </td>
     </tr>
     {% endfor %}
@@ -45,5 +45,9 @@
 <footer>
     <h4>Done by: Fethi TChi</h4>
 </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/static/js/delete.js"></script>
 </body>
 </html>
