@@ -1,35 +1,35 @@
-class Member():
+from app import db
 
-    def __init__(self, name, age):
-        self.id = 0
-        self.name = name
-        self.age = age
-        self.posts = []
+class Member(db.Model):
 
-    def __str__(self):
-        return f"Name: {self.name}, Age: {self.age}"
-    
-    def __dict__(self):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(50))
+    age = db.Column(db.Integer)
+    posts = db.relationship("Post", backref = "members")
+
+    def __repr__(self):
+        return f"Id: {self.id}, Name: {self.name}, Age: {self.age}"
+
+    def serialize(self):
         return {
-            "id" : self.id,
-            "name" : self.name,
-            "age" : self.age,
-            "posts" : self.posts
+            "id": self.id,
+            "name": self.name,
+            "age": self.age,
+            "posts": self.posts,
         }
 
 
-class Post():
+class Post(db.Model):
 
-    def __init__(self, title, content, member_id=0):
-        self.id = 0
-        self.title = title
-        self.content = content
-        self.member_id = member_id
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(50))
+    content = db.Column(db.String(800))
+    member_id = db.Column(db.Integer, db.ForeignKey("member.id"))
 
-    def __str__(self):
+    def __repr__(self):
         return f"Title: {self.title}, Content: {self.content}"
-    
-    def __dict__(self):
+
+    def serialize(self):
         return {
             "id": self.id,
             "title": self.title,

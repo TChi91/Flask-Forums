@@ -6,7 +6,7 @@ from app import app, member_store, post_store
 @app.route("/api/topic/all")
 def all_apis():
     all_posts = post_store.get_all()
-    posts = [post.__dict__() for post in all_posts]
+    posts = [post.serialize() for post in all_posts]
     return jsonify(posts)
 
 
@@ -14,7 +14,7 @@ def all_apis():
 def show_api(id):
     post = post_store.get_by_id(id)
     try:
-        result = jsonify(post.__dict__())
+        result = jsonify(post.serialize())
     except AttributeError:
         result = abort(404, f"Topic with id: {id} doesn't exist")
     return result
@@ -26,7 +26,7 @@ def add_api():
     try:
         new_post = models.Post(request_data['title'], request_data['content'])
         post_store.add(new_post)
-        result = jsonify(new_post.__dict__())
+        result = jsonify(new_post.serialize())
     except KeyError:
         result = abort(400, f"Couldn't parse the request data !")
     return result
@@ -37,7 +37,7 @@ def delete_api(id):
     post = post_store.get_by_id(id)
     try:
         post_store.delete(id)
-        result = jsonify(post.__dict__())
+        result = jsonify(post.serialize())
     except ValueError:
         result = abort(404, f"Topic with id: {id} doesn't exist")
     return result
@@ -51,7 +51,7 @@ def edit_api(id):
         post.title = request_data['title']
         post.content = request_data['content']
         post_store.update(post)
-        result = jsonify(post.__dict__())
+        result = jsonify(post.serialize())
     except AttributeError:
         result = abort(404, f"Topic with id: {id} doesn't exist")
     except KeyError:

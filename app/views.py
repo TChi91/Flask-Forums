@@ -20,7 +20,7 @@ def show_topic(id):
 @app.route("/topic/add", methods=['GET', 'POST'])
 def add_topic():
     if request.method == 'POST':
-        new_post = models.Post(request.form['title'] , request.form['content'])
+        new_post = models.Post(title=request.form["title"], content=request.form["content"])
         post_store.add(new_post)
         return redirect(url_for('home'))
     else:
