@@ -24,7 +24,8 @@ def show_api(id):
 def add_api():
     request_data = request.get_json()
     try:
-        new_post = models.Post(request_data['title'], request_data['content'])
+        #new_post = models.Post(request_data['title'], request_data['content'])
+        new_post = models.Post(title=request_data["title"], content=request_data["content"])
         post_store.add(new_post)
         result = jsonify(new_post.serialize())
     except KeyError:
