@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 folder_path = os.path.abspath(os.path.dirname(__file__))
 #app.config["SQLALCHEMY_DATABASE_URI"] = f"""sqlite:///{os.path.join(folder_path, "my_database.db")}"""
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://fbkopuwxkdozco:75abe2c71cf8e243dbb6aa98c8a83179cfde7f01a51dff52e0bb8560b857dd16@ec2-54-235-109-37.compute-1.amazonaws.com:5432/d7baun45bp7drk"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 db = SQLAlchemy(app)
 
