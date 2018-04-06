@@ -21,12 +21,16 @@ dummy_posts = [
 ]
 
 
-def seed_stores(member_store, post_store):
-    db.drop_all()
-    db.create_all()
-    
-    for member in dummy_members:
-        member_store.add(member)
+def tables_exist():
+   return db.engine.table_names() != []
 
-    for post in dummy_posts:
-        post_store.add(post)
+
+def seed_stores(member_store, post_store):
+   if not tables_exist():
+       db.drop_all()
+       db.create_all()
+
+       for member in dummy_members:
+           member_store.add(member)
+       for post in dummy_posts:
+           post_store.add(post)
